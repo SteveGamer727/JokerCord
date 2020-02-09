@@ -11,7 +11,7 @@ This video covers the bot setup, not the Python installation.
 
 If the image isn't working, click [here](https://youtu.be/4Lqbk2k2fwk)
 
-## NEW VERSION - 08/Oct/2019
+## NEW VERSION - 08/Oct/2019.
 
 **To manage the bot, go to your browser of preference after running joker.py and type http://localhost:5555**
 
