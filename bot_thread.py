@@ -17,11 +17,17 @@ path= str(Path().absolute())
 #Intent to fix windows problem, define a function to LOCK a file before trying to write to it.
 lock = threading.Lock()
 def write_lock_jsonDump(fileObject, fileContent):
-    lock.acquire()
-    json.dump(fileContent, fileObject)
-    fileObject.flush()
-    lock.release()
-
+    try:
+        for line in fileContent:
+            print("Contents: "+str(line))
+        lock.acquire()
+        print(fileObject.name)
+        json.dump(fileContent, fileObject)
+        fileObject.flush()
+        lock.release()
+    except Exception as e:
+        print(e)
+        print(e.__class__.__name__)
 legendaries = ['arceus', 'articuno', 'azelf', 'celebi', 'cobalion', 'cosmoem', 'cosmog', 'cresselia',
             'darkrai', 'deoxys', 'dialga', 'diancie', 'Entei', 'genesect', 'giratina', 'groudon',
             'heatran', 'ho-Oh', 'hoopa', 'jirachi', 'Keldeo', 'kyogre', 'kyurem', 'landorus',
@@ -61,8 +67,7 @@ def write_json(wrtline, wrt):
             jsdecoded[str(wrtline)] = str(wrt)
             pr.close()
         with open(str(os.path.join(path,'preferences.json')), 'w') as jfil:
-            write_lock_jsonDump(jsdecoded,jfil)
-            json.dump(jsdecoded, jfil)
+            write_lock_jsonDump(jfil,jsdecoded)
             jfil.close()
     except Exception as e: print(e)
 

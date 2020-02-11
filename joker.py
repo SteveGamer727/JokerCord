@@ -26,7 +26,7 @@ legendaries = ['arceus', 'articuno', 'azelf', 'celebi', 'cobalion', 'cosmoem', '
 @asyncio.coroutine
 async def startClient():
     try:
-        print("-------------------\nStarting connection. This may take up to 3 minutes. A fix is being searched.\n-------------------")
+        print("-------------------------------------\nStarting connection. This may take up to 3 minutes. A fix is being searched.\n----------------------------")
         await bot_thread.client.start(pr_l["token"], bot=False)
     except Exception as e:
         if(e.__class__.__name__ == "LoginFailure"):
