@@ -10,8 +10,18 @@ import sys, os
 import random
 import hashlib
 from pathlib import Path
-from threading import Thread
+import threading
 path= str(Path().absolute()) 
+
+
+#Intent to fix windows problem, define a function to LOCK a file before trying to write to it.
+lock = threading.Lock()
+def write_lock_jsonDump(fileObject, fileContent):
+    lock.acquire()
+    json.dump(fileContent, fileObject)
+    fileObject.flush()
+    lock.release()
+
 legendaries = ['arceus', 'articuno', 'azelf', 'celebi', 'cobalion', 'cosmoem', 'cosmog', 'cresselia',
             'darkrai', 'deoxys', 'dialga', 'diancie', 'Entei', 'genesect', 'giratina', 'groudon',
             'heatran', 'ho-Oh', 'hoopa', 'jirachi', 'Keldeo', 'kyogre', 'kyurem', 'landorus',
@@ -51,6 +61,7 @@ def write_json(wrtline, wrt):
             jsdecoded[str(wrtline)] = str(wrt)
             pr.close()
         with open(str(os.path.join(path,'preferences.json')), 'w') as jfil:
+            write_lock_jsonDump(jsdecoded,jfil)
             json.dump(jsdecoded, jfil)
             jfil.close()
     except Exception as e: print(e)
@@ -118,14 +129,14 @@ async def on_ready():
                 clr_channels.close()
 
             with open(str(os.path.join(path,'User','channels.json')), 'w') as jfil:
-                json.dump(channel_list, jfil)
+                write_lock_jsonDump(jfil,channel_list)
                 jfil.close()
     try:
         with open (str(os.path.join(path,'User','guilds.json')), 'w') as clr_guilds:
             clr_guilds.write("{}")
             clr_guilds.close()
         with open(str(os.path.join(path,'User','guilds.json')), 'w') as jfil:
-            json.dump(guild_list, jfil)
+            write_lock_jsonDump(jfil,guild_list)
             jfil.close()
     except Exception as e: print(e)
     for channel in channel_list:
