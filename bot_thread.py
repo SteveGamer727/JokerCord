@@ -106,10 +106,7 @@ with open (str(os.path.join(path,'Lists','hashes.json'))) as h:
     h.close()
 
 #End
-
-#Ready
-@client.event
-async def on_ready():
+def refreshChannels():
     user_guilds = client.guilds
     for guild in user_guilds:
         try:
@@ -144,6 +141,15 @@ async def on_ready():
             write_lock_jsonDump(jfil,guild_list)
             jfil.close()
     except Exception as e: print(e)
+    refreshDone = 1
+#Ready
+@client.event
+async def on_ready():
+    refreshDone = 0
+    #Check if file size is less than 5 bytes, in that case it must be empty (ergo only contains the empty array)
+    if (os.path.getsize(str(os.path.join(path,'User','channels.json')).replace("\\","/")) < 5):
+        refreshDone = 0
+        print("Channel list appears to be empty. Please refresh it by going to the webpage>settings>refresh channels")
     for channel in channel_list:
         if channel_list[channel][1] == "True":
             spchannel = client.get_channel(int(channel))
@@ -160,7 +166,7 @@ async def on_message(message):
     except IndexError:
         ev = 0
     #Check if message is from Pokecord Spawn
-    if (message.author.id != client.user.id and ev == 1 and (guild_list[str(message.guild.id)][0] == "True")): #and "A wild" in message.content):
+    if (refreshDone == 1 and message.author.id != client.user.id and ev == 1 and (guild_list[str(message.guild.id)][0] == "True")): #and "A wild" in message.content):
         
         try:
             url = embed.image.url

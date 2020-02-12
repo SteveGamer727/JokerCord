@@ -38,7 +38,6 @@ def loop_in_thread(loop):
     loop.run_until_complete(startClient())
    
 app.secret_key = "mysecretkey"
-
 def add_pokemon(name):
     try:
         with open(os.path.join(pth_r,'User','customs.json')) as cs:
@@ -86,6 +85,10 @@ def delay(g_id, dly):
         json.dump(d, glds)
         glds.close()
     return redirect(url_for("custom_guilds"))
+@app.route("/refresh_channels")
+def refresh_channels():
+    bot_thread.refreshChannels()
+    return redirect(url_for("home"))
 @app.route("/update", methods=["POST"])
 def update():
     if request.method == "POST":
