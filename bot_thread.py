@@ -16,7 +16,7 @@ path= str(Path().absolute())
 # Start client
 client = commands.Bot(command_prefix='_')
 #Intent to fix windows problem, define a function to LOCK a file before trying to write to it.
-refreshDone = 0
+
 
 
 
@@ -95,11 +95,11 @@ with open (str(os.path.join(path,'User','customs.json'))) as cs:
 #Startup process. Check files, and proceed.
 def startUp():
     print("\n\n\n\n\n\n")
-    refreshDone = 0
+    
     print("Checking file size...")
     #Check if file size is less than 5 bytes, in that case it must be empty (ergo only contains the empty array)
     if (os.path.getsize(str(os.path.join(path,'User','channels.json')).replace("\\","/")) < 5):
-        refreshDone = 0
+        
         print("\n\n\n\n\n\n")
         print("Channel list appears to be empty. Please refresh it by going to the webpage>settings>refresh channels")
         print("\n\n\n\n\n\n")
@@ -108,12 +108,9 @@ def startUp():
         print("Everything is alright. JokerCord will start. Please start the spam function from the settings menu in the webpage.")
         print("--------------------------------------------")
         print("\n\n\n\n\n\n")
+        sys.exit(0)
         
 
-        refreshDone = 1
-        
-
-    
 startUp()
 
 
@@ -178,7 +175,7 @@ def refreshChannels():
     except Exception as e: print(e)
     print("-----------------------------------")
     print("Channels have been successfully updated. You may need to reboot.")
-    refreshDone = 1
+    
 #Ready
 def createTasks():
     taskNumber=1
@@ -191,7 +188,7 @@ def createTasks():
             client.loop.create_task(spamThread(spchannel,channel_list[channel][2]))
         else:
             print(str(channel)+" isn't enabled, skipping...")
-    refreshDone = 1
+    
 
 @client.event
 async def on_message(message):
@@ -202,7 +199,7 @@ async def on_message(message):
     except IndexError:
         ev = 0
     #Check if message is from Pokecord Spawn
-    if (refreshDone == 1 and message.author.id != client.user.id and ev == 1 and (guild_list[str(message.guild.id)][0] == "True")): #and "A wild" in message.content):
+    if (message.author.id != client.user.id and ev == 1 and (guild_list[str(message.guild.id)][0] == "True")): #and "A wild" in message.content):
         
         try:
             url = embed.image.url
