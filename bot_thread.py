@@ -247,7 +247,7 @@ async def on_message(message):
             except AttributeError:
                 return
     except Exception as e:
-        if(e.__class__.__name__ == "TypeError"):
+        if(e.__class__.__name__ == "KeyError"):
             pass
         else:
             print e
