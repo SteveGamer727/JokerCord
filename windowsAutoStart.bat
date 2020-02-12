@@ -1,3 +1,4 @@
+echo "This autostart is in a very early stage. It may not work at all."
 set "python=C:\python38\python.exe"
 "%python%" --version 2>NUL
 if errorlevel 1 goto pythonNotInstalled
