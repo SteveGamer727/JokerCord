@@ -1,9 +1,10 @@
 If you like my work and want to support it, you can donate here :)
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/jokerware)
-
+# NEW UPDATE FOR WINDOWS USERS
+This version fixes the known error of no servers or channels showing on the webpage and KeyErrors on the console. Please let me know if any other error happens.
 # NEW UPDATE MULTI-1.0.0 3/2/2020
-This update brings a new awesome feature: Multi spam!
+This update brings a1new awesome feature: Multi spam!
 Enable and disable spam in specific channels and set a delay for each of them! 
 -The setup of the bot has been simplified
 
