@@ -192,58 +192,63 @@ def createTasks():
 
 @client.event
 async def on_message(message):
-    ev = 1
-    #Get the embed message
     try:
-        embed = message.embeds[0]
-    except IndexError:
-        ev = 0
-    #Check if message is from Pokecord Spawn
-    if (message.author.id != client.user.id and ev == 1 and (guild_list[str(message.guild.id)][0] == "True")): #and "A wild" in message.content):
-        
+        ev = 1
+        #Get the embed message
         try:
-            url = embed.image.url
+            embed = message.embeds[0]
+        except IndexError:
+            ev = 0
+        #Check if message is from Pokecord Spawn
+        if (message.author.id != client.user.id and ev == 1 and (guild_list[str(message.guild.id)][0] == "True")): #and "A wild" in message.content):
+        
             try:
-                    if 'discordapp' not in url:
+                url = embed.image.url
+                try:
+                        if 'discordapp' not in url:
+                            return
+                except TypeError:
                         return
-            except TypeError:
-                    return
-            #print(url)
-            #Open image and save it to JPG
-            openimg = open(str(os.path.join(path,'Assets','pokemon.jpg')),'wb')
-            openimg.write(requests.get(url).content)
-            openimg.close()
+                #print(url)
+                #Open image and save it to JPG
+                openimg = open(str(os.path.join(path,'Assets','pokemon.jpg')),'wb')
+                openimg.write(requests.get(url).content)
+                openimg.close()
             
             
 
                 #Get hashes
 
-            mdhash = gethash(str(os.path.join(path,'Assets','pokemon.jpg')))
-            #Compare hashes with the lists
-            save_line = None
+                mdhash = gethash(str(os.path.join(path,'Assets','pokemon.jpg')))
+                #Compare hashes with the lists
+                save_line = None
             
-            for i in hashdata:
+                for i in hashdata:
                 
-                if (hashdata[i] == mdhash):
-                    save_line = i
-                    break
-            if(save_line in legendaries):
-                await asyncio.sleep(3)
-            else:
-                await asyncio.sleep(int(guild_list[str(message.guild.id)][3]))
-            if(prefs["custom_list"] == "True"):
-                if(save_line in custom_list):
+                    if (hashdata[i] == mdhash):
+                        save_line = i
+                        break
+                if(save_line in legendaries):
+                    await asyncio.sleep(3)
+                else:
+                    await asyncio.sleep(int(guild_list[str(message.guild.id)][3]))
+                if(prefs["custom_list"] == "True"):
+                    if(save_line in custom_list):
+                        await message.channel.send("p!catch " + save_line.lower())
+                        if (save_line not in file_read("User", "caught.txt")):
+                            file_append("User","caught.txt",save_line)
+                else:
                     await message.channel.send("p!catch " + save_line.lower())
                     if (save_line not in file_read("User", "caught.txt")):
-                        file_append("User","caught.txt",save_line)
-            else:
-                await message.channel.send("p!catch " + save_line.lower())
-                if (save_line not in file_read("User", "caught.txt")):
-                    file_append("User","caught.txt",save_line)      
+                        file_append("User","caught.txt",save_line)      
                     
-                else:
-                    return
-        except AttributeError:
-            return
-    
+                    else:
+                        return
+            except AttributeError:
+                return
+    except Exception as e:
+        if(e.__class__.__name__ == "TypeError"):
+            pass
+        else:
+            print e
 
