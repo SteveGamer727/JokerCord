@@ -108,7 +108,7 @@ def startUp():
         print("Everything is alright. JokerCord will start. Please start the spam function from the settings menu in the webpage.")
         print("--------------------------------------------")
         print("\n\n\n\n\n\n")
-        sys.exit(0)
+        #sys.exit(0)
         
 
 startUp()
