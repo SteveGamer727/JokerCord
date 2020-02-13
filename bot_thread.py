@@ -250,5 +250,5 @@ async def on_message(message):
         if(e.__class__.__name__ == "KeyError"):
             pass
         else:
-            print e
+            print (e)
 
