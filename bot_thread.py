@@ -233,10 +233,10 @@ async def on_message(message):
                     if (save_line not in file_read("User", "caught.txt")):
                         file_append("User","caught.txt",save_line)
                         
-            else:
-                await message.channel.send(prefs["custom_prefix"] + "catch " + save_line.lower())
-                if (save_line not in file_read("User", "caught.txt")):
-                    file_append("User","caught.txt",save_line)
+                else:
+                    await message.channel.send(prefs["custom_prefix"] + "catch " + save_line.lower())
+                    if (save_line not in file_read("User", "caught.txt")):
+                        file_append("User","caught.txt",save_line)
                     
                     else:
                         return
