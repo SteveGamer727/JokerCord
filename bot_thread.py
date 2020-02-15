@@ -5,7 +5,6 @@ import json
 import requests
 import time
 from discord.ext import commands
-from PIL import Image
 import sys, os
 import random
 import hashlib
