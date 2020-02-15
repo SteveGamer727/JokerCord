@@ -106,7 +106,7 @@ sudo apt-get install python3 && sudo apt-get install python3-pip
 ```
 To install the required libraries, simply run pip as follows:
 ```bash
-pip3 install discord.py requests pillow flask
+pip3 install discord.py requests flask
 ```
 Lastly, to run JokerCord navigate to the downloaded folder:
 ```bash
@@ -125,7 +125,7 @@ cmd
 ```
 In the search box. After the console opens, you can install each library by typing:
 ```bash
-pip3 install discord.py requests pillow flask
+pip3 install discord.py requests flask
 ```
 **NOTE**
 This will not work if you didn't add Python to the PATH as referenced before.
@@ -150,7 +150,6 @@ Any bugs you find please consider sending them. Do notice this bot is in a very 
 - [Discord.py](https://pypi.org/project/discord.py/)
 - [Flask](https://pypi.org/project/Flask/)
 - [Requests](https://pypi.org/project/requests/)
-- [PIL](https://pypi.org/project/Pillow/)
 
 ## Some captures!
 ![Homepage](https://cdn1.imggmi.com/uploads/2019/10/8/fcef494ae5630ecdb4030fd909583cbc-full.png)
