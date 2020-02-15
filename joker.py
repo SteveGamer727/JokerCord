@@ -165,6 +165,13 @@ def custom_list():
         cl = json.load(c)
         c.close()
     return render_template("custom_list.html", cl=cl, err=error)
+@app.route("/custom_prefix", methods=['GET', 'POST'])
+def custom_prefix():
+    with open (os.path.join(pth_r,'preferences.json')) as pcp:
+        pref = json.load(pcp)
+        pcp.close()
+        custom_prefix = pref["custom_prefix"]
+    return render_template("custom_prefix.html", custom_prefix=custom_prefix)
 @app.route("/change_channel/<string:id>/<string:status>")
 def change_channel(id,status):
     with open (os.path.join(pth_r,'User','channels.json'), 'r') as channels_list:
@@ -219,7 +226,19 @@ def setup_finished():
                  return render_template("setup.html", error=error)
             else:
                 bot_thread.write_json("token", token)
-                return redirect(url_for("home"))  
+                return redirect(url_for("home"))
+            
+@app.route("/prefix_finished", methods=['POST'])
+def prefix_finished():
+        if request.method == 'POST':
+            error = None
+            custom_prefix = request.form.get('custom_prefix')
+            if(custom_prefix == ""): 
+                 error = "Please fill out all the required fields"
+                 return render_template("custom_prefix.html", error=error)
+            else:
+                bot_thread.write_json("custom_prefix", custom_prefix)
+                return redirect(url_for("home"))
 
 @app.route("/preferences")
 def pref_page():

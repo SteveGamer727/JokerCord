@@ -94,20 +94,15 @@ with open (str(os.path.join(path,'User','customs.json'))) as cs:
 #Pref
 #Startup process. Check files, and proceed.
 def startUp():
-    print("\n\n\n\n\n\n")
-    
-    print("Checking file size...")
+    print("\n\nChecking file size...")
     #Check if file size is less than 5 bytes, in that case it must be empty (ergo only contains the empty array)
     if (os.path.getsize(str(os.path.join(path,'User','channels.json')).replace("\\","/")) < 5):
         
-        print("\n\n\n\n\n\n")
-        print("Channel list appears to be empty. Please refresh it by going to the webpage>settings>refresh channels")
-        print("\n\n\n\n\n\n")
+        print("\n\nChannel list appears to be empty. Please refresh it by going to the webpage>settings>refresh channels \n\n")
     else:    
-        print("--------------------------------------------")
-        print("Everything is alright. JokerCord will start. Please start the spam function from the settings menu in the webpage.")
-        print("--------------------------------------------")
-        print("\n\n\n\n\n\n")
+        print("""--------------------------------------------
+Everything is alright. JokerCord will start. Please start the spam function from the settings menu in the webpage.
+-------------------------------------------- \n\n""")
         #sys.exit(0)
         
 
@@ -135,10 +130,10 @@ with open (str(os.path.join(path,'Lists','hashes.json'))) as h:
 
 #End
 def refreshChannels():
-    print("Starting channel refresh... This may take a long time.")
-    print("------------------------------------------------------")
-    print("Relax and get a drink.")
-    print("----------------------")
+    print("""Starting channel refresh... This may take a long time.
+------------------------------------------------------
+Relax and get a drink.
+----------------------""")
     user_guilds = client.guilds
     for guild in user_guilds:
         try:
@@ -173,8 +168,8 @@ def refreshChannels():
             write_lock_jsonDump(jfil,guild_list)
             jfil.close()
     except Exception as e: print(e)
-    print("-----------------------------------")
-    print("Channels have been successfully updated. You may need to reboot.")
+    print("""-----------------------------------
+Channels have been successfully updated. You may need to reboot.""")
     
 #Ready
 def createTasks():
@@ -187,7 +182,7 @@ def createTasks():
             spchannel = client.get_channel(int(channel))
             client.loop.create_task(spamThread(spchannel,channel_list[channel][2]))
         else:
-            print(str(channel)+" isn't enabled, skipping...")
+            pass
     
 
 @client.event
@@ -234,13 +229,14 @@ async def on_message(message):
                     await asyncio.sleep(int(guild_list[str(message.guild.id)][3]))
                 if(prefs["custom_list"] == "True"):
                     if(save_line in custom_list):
-                        await message.channel.send("p!catch " + save_line.lower())
-                        if (save_line not in file_read("User", "caught.txt")):
-                            file_append("User","caught.txt",save_line)
-                else:
-                    await message.channel.send("p!catch " + save_line.lower())
+                    await message.channel.send(prefs["custom_prefix"] + "catch " + save_line.lower())
                     if (save_line not in file_read("User", "caught.txt")):
-                        file_append("User","caught.txt",save_line)      
+                        file_append("User","caught.txt",save_line)
+                        
+            else:
+                await message.channel.send(prefs["custom_prefix"] + "catch " + save_line.lower())
+                if (save_line not in file_read("User", "caught.txt")):
+                    file_append("User","caught.txt",save_line)
                     
                     else:
                         return
