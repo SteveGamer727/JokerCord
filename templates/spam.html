@@ -27,14 +27,13 @@
 	<div>
 	{% for channel in channels %}
 	<form action="/spam_delay/{{channel}}" method="POST">
-
+		<p id="spam_channel_text">{{channels[channel][0]}}</p>
 		<div class="input-group mb-3">
   		<div class="input-group-prepend">
-			<span class="input-group-text" id="inputGroup-sizing-default">{{channels[channel][0]}}</span>
+			<button type="submit" class="btn btn-success">Save (Reboot after)</button>
  		</div>
 		<input type="text" value="{{channels[channel][2]}}"class="form-control" name="{{channel}}"aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 		</div>
-		<button type="submit" class="btn btn-success">Save {{channels[channel][0]}} (Reboot after)</button>
 	</form>
 	{% endfor %}
 	</div>

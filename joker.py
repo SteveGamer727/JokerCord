@@ -5,6 +5,7 @@ import logging
 import threading
 import sys
 import json
+import platform
 from pathlib import Path
 log = logging.getLogger("werkzeug")
 log.setLevel(logging.ERROR)
@@ -60,9 +61,13 @@ def file_del(dfile, item):
         json.dump(list_del, n)
         n.close()
 def restart():
-       
-        print("Restarting")
 
+        if platform.system() == "Windows":
+            os.system('cls')
+        else:
+            os.system('clear')
+        
+        print("Restarting")
         os.execv(sys.executable, ['python3'] + sys.argv)
 
 @app.route("/")
