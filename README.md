@@ -1,6 +1,12 @@
 If you like my work and want to support it, you can donate here :)
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/jokerware)
+
+# Discontinued version
+This version will soon be discontinued. I will rewrite the bot 100% from scratch in another language (Go) with improved stability,
+usability, reduced bugs , cleaner and with a massively easier setup process. Please be patient until I release it. For any updates
+you can join the discord server.
+
 # NEW UPDATE FOR WINDOWS USERS
 This version fixes the known error of no servers or channels showing on the webpage and KeyErrors on the console. Please let me know if any other error happens.
 # NEW UPDATE MULTI-1.0.0 3/2/2020
