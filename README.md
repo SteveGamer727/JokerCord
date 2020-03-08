@@ -2,6 +2,10 @@ If you like my work and want to support it, you can donate here :)
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/jokerware)
 
+# DISCLAIMER
+The bot has been broken as of the recent update of pokecord. New bot (a.k.a Nearix) is working 100%, but it is still not finished.
+You can check out latest updates and info at the discord server. Thanks for your patience.
+
 # Discontinued version (As of 18/02/2020)
 This version will soon be discontinued. I will rewrite the bot 100% from scratch in another language (Go) with improved stability,
 usability, reduced bugs , cleaner and with a massively easier setup process. Please be patient until I release it. For any updates
