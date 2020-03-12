@@ -7,6 +7,7 @@ The bot has been broken as of the recent update of pokecord. New bot (a.k.a Near
 You can check out latest updates and info at the discord server. Thanks for your patience.
 
 # Discontinued version (As of 18/02/2020)
+(Keep track of the new bot at https://github.com/joker-ware/nearix-beta
 This version will soon be discontinued. I will rewrite the bot 100% from scratch in another language (Go) with improved stability,
 usability, reduced bugs , cleaner and with a massively easier setup process. Please be patient until I release it. For any updates
 you can join the discord server. https://discord.gg/S54EKpt
