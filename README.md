@@ -10,7 +10,7 @@ You can check out latest updates and info at the discord server. Thanks for your
 (Keep track of the new bot at https://github.com/joker-ware/nearix-beta
 This version will soon be discontinued. I will rewrite the bot 100% from scratch in another language (Go) with improved stability,
 usability, reduced bugs , cleaner and with a massively easier setup process. Please be patient until I release it. For any updates
-you can join the discord server. https://discord.gg/S54EKpt
+you can join the discord server. https://discord.gg/UHVY23g
 
 # NEW UPDATE FOR WINDOWS USERS
 This version fixes the known error of no servers or channels showing on the webpage and KeyErrors on the console. Please let me know if any other error happens.
